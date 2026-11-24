@@ -6,6 +6,6 @@ if __name__ == "__main__":
     age = 30
 
     print(f"Plant: {name}")
-    print(f"Heigth: {height}cm")
+    print(f"Height: {height}cm")
     print(f"Age: {age} days")
-    print("===  End of Program ===")
+    print("=== End of Program ===")
