@@ -1,16 +1,17 @@
 class Plant:
     name: str
     height: float
-    lifespan: int
+    days_old: int
+    growth_rate: float
 
     def show(self) -> None:
-        print(f"{self.name}: {self.height}cm, {self.lifespan} days old")
+        print(f"{self.name}: {self.height}cm, {self.days_old} days old")
 
     def grow(self) -> None:
-        self.height = round(self.height + 0.8, 1)
+        self.height = round(self.height + self.growth_rate, 1)
 
     def age(self) -> None:
-        self.lifespan += 1
+        self.days_old += 1
 
 
 if __name__ == "__main__":
@@ -18,7 +19,8 @@ if __name__ == "__main__":
     rose = Plant()
     rose.name = "Rose"
     rose.height = 25.0
-    rose.lifespan = 30
+    rose.days_old = 30
+    rose.growth_rate = 0.8
     rose.show()
 
     init_height = rose.height
