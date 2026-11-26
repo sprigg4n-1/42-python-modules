@@ -40,7 +40,7 @@ class Plant:
 
 class Flower(Plant):
     def __init__(self, name: str, height: float,
-                 days_old: int, color: str, growth_rate: float = 0.8):
+                 days_old: int, color: str, growth_rate: float = 0.8) -> None:
         super().__init__(name, height, days_old, growth_rate)
         self.color = color
         self.is_blooming = False
@@ -60,7 +60,7 @@ class Flower(Plant):
 class Tree(Plant):
     def __init__(self, name: str, height: float,
                  days_old: int, trunk_diameter: float,
-                 growth_rate: float = 0.8):
+                 growth_rate: float = 0.8) -> None:
         super().__init__(name, height, days_old, growth_rate)
         self.trunk_diameter = round(trunk_diameter, 1)
 
@@ -75,7 +75,8 @@ class Tree(Plant):
 
 class Vegetable(Plant):
     def __init__(self, name: str, height: float,
-                 days_old: int, harvest_season: str, growth_rate: float = 0.8):
+                 days_old: int, harvest_season: str,
+                 growth_rate: float = 0.8) -> None:
         super().__init__(name, height, days_old, growth_rate)
         self.harvest_season = harvest_season
         self.nutritional_value: float = 0.0
@@ -113,8 +114,8 @@ if __name__ == "__main__":
     print("=== Vegetable")
     tomato = Vegetable("Tomato", 5.0, 10, "April", 2.1)
     tomato.show()
-    print("[make tomato grow and age from 20 days]")
-    for n in range(0, 20):
+    print("[make tomato grow and age for 20 days]")
+    for _ in range(20):
         tomato.grow()
         tomato.age()
     tomato.show()
