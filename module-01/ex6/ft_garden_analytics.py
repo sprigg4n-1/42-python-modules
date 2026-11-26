@@ -1,21 +1,22 @@
 class Plant:
     class Stats():
-        grow_count: int = 0
-        age_count: int = 0
-        show_count: int = 0
+        def __init__(self) -> None:
+            self._grow_count: int = 0
+            self._age_count: int = 0
+            self._show_count: int = 0
 
         def add_grow(self) -> None:
-            self.grow_count += 1
+            self._grow_count += 1
 
         def add_age(self) -> None:
-            self.age_count += 1
+            self._age_count += 1
 
         def add_show(self) -> None:
-            self.show_count += 1
+            self._show_count += 1
 
         def display(self) -> None:
-            print(f"Stats: {self.grow_count} grow, {self.age_count} age,"
-                  f" {self.show_count} show")
+            print(f"Stats: {self._grow_count} grow, {self._age_count} age,"
+                  f" {self._show_count} show")
 
     def __init__(self, name: str, height: float,
                  days_old: int, growth_rate: float = 0.8) -> None:
@@ -55,7 +56,7 @@ class Plant:
         self._stats.add_grow()
         if growth_amount is None:
             growth_amount = self.growth_rate
-        self._height = round(self._height + self.growth_rate, 1)
+        self._height = round(self._height + growth_amount, 1)
 
     def age(self, days_amount: int = 1) -> None:
         self._stats.add_age()
@@ -101,8 +102,9 @@ class Seed(Flower):
         self.seeds = 0
 
     def bloom(self) -> None:
+        if not self.is_blooming:
+            self.seeds += 42
         super().bloom()
-        self.seeds += 42
 
     def show(self) -> None:
         super().show()
@@ -112,14 +114,14 @@ class Seed(Flower):
 class TreeStats(Plant.Stats):
     def __init__(self) -> None:
         super().__init__()
-        self.count_produce_shade = 0
+        self._count_produce_shade = 0
 
     def add_produce_shade(self) -> None:
-        self.count_produce_shade += 1
+        self._count_produce_shade += 1
 
     def display(self) -> None:
         super().display()
-        print(f" {self.count_produce_shade} shade")
+        print(f" {self._count_produce_shade} shade")
 
 
 class Tree(Plant):
@@ -134,7 +136,7 @@ class Tree(Plant):
 
     def produce_shade(self) -> None:
         self._stats.add_produce_shade()
-        print(f"Tree {self.name} produces a shade of {self._height}cm long"
+        print(f"Tree {self.name} now produces a shade of {self._height}cm long"
               f" and {self.trunk_diameter}cm wide.")
 
     def show(self) -> None:
@@ -161,7 +163,7 @@ class Vegetable(Plant):
 
     def age(self, days_amount: int = 1) -> None:
         super().age(days_amount)
-        self.nutritional_value += 0.5
+        self.nutritional_value += 0.5 * days_amount
 
 
 def display_plant_stats(plant: Plant) -> None:
